@@ -1,0 +1,15 @@
+next-env.d.ts
+node_modules
+.next
+out
+dist
+public
+*.min.js
+*.css
+*.yml
+*.yaml
+*.json
+*.html
+*.md
+*.lock
+*.log
