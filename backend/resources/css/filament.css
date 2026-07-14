@@ -1,0 +1,15 @@
+@import 'tailwindcss';
+@import '../../vendor/filament/filament/resources/css/theme.css';
+
+:root {
+    --color-primary-50: #e8f0ed;
+    --color-primary-100: #c5d9d1;
+    --color-primary-200: #9ec0b3;
+    --color-primary-300: #76a795;
+    --color-primary-400: #4f8e77;
+    --color-primary-500: #1B4D3E;
+    --color-primary-600: #154335;
+    --color-primary-700: #0f382b;
+    --color-primary-800: #0a2d22;
+    --color-primary-900: #051e16;
+}
