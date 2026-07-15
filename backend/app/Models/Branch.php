@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\HasAuditLog;
 
 class Branch extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasAuditLog;
 
     protected $fillable = [
         'name', 'code', 'domain', 'address',

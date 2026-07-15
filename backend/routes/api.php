@@ -6,6 +6,7 @@ use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingController;
+use App\Models\AuditLog;
 
 Route::middleware('throttle:api')->group(function () {
     Route::get('/health', function () {
@@ -46,6 +47,10 @@ Route::apiResource('branches', BranchController::class);
 Route::get('/current-branch', function () {
     return response()->json(app('current_branch'));
 });
+
+Route::get('/audit-logs', function () {
+    return response()->json(AuditLog::with('user')->latest()->get());
+})->middleware('auth:sanctum');
 
 // Test subdomain
 Route::get('/test-subdomain', function () {
