@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\UserController;
 
 Route::middleware('throttle:api')->group(function () {
     Route::get('/health', function () {
@@ -17,6 +18,12 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
+
+    Route::get('/users', [UserController::class, 'index']);
+    Route::post('/users', [UserController::class, 'store']);
+    Route::get('/users/{user}', [UserController::class, 'show']);
+    Route::put('/users/{user}', [UserController::class, 'update']);
+    Route::delete('/users/{user}', [UserController::class, 'destroy']);
 });
 
 Route::post('/forgot-password', [PasswordResetController::class, 'forgot']);
@@ -36,4 +43,5 @@ Route::get('/test-subdomain', function () {
         'subdomain' => explode('.', request()->getHost())[0],
         'branch' => $branch,
     ]);
+
 });
