@@ -23,3 +23,17 @@ Route::post('/forgot-password', [PasswordResetController::class, 'forgot']);
 Route::post('/reset-password', [PasswordResetController::class, 'reset']);
 
 Route::apiResource('branches', BranchController::class);
+
+Route::get('/current-branch', function () {
+    return response()->json(app('current_branch'));
+});
+
+// Test subdomain
+Route::get('/test-subdomain', function () {
+    $branch = request()->attributes->get('branch');
+    return response()->json([
+        'host' => request()->getHost(),
+        'subdomain' => explode('.', request()->getHost())[0],
+        'branch' => $branch,
+    ]);
+});
