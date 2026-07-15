@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SettingController;
 
 Route::middleware('throttle:api')->group(function () {
     Route::get('/health', function () {
@@ -19,11 +20,22 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
 
+
+    //user CRUD
     Route::get('/users', [UserController::class, 'index']);
     Route::post('/users', [UserController::class, 'store']);
     Route::get('/users/{user}', [UserController::class, 'show']);
     Route::put('/users/{user}', [UserController::class, 'update']);
     Route::delete('/users/{user}', [UserController::class, 'destroy']);
+
+
+    //setting CRUD
+    Route::get('/settings', [SettingController::class, 'index']);
+    Route::post('/settings', [SettingController::class, 'store']);
+    Route::get('/settings/{setting}', [SettingController::class, 'show']);
+    Route::put('/settings/{setting}', [SettingController::class, 'update']);
+    Route::delete('/settings/{setting}', [SettingController::class, 'destroy']);
+    Route::get('/settings/key/{key}', [SettingController::class, 'getByKey']);
 });
 
 Route::post('/forgot-password', [PasswordResetController::class, 'forgot']);
